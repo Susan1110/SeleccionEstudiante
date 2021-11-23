@@ -154,3 +154,7 @@ class AsignaturaTestCase ( unittest.TestCase ) :
         self.assertEqual(consulta2, ("Millan"))
         self.assertEqual(consulta3, ("Noelia"))
         self.assertEqual(consulta4, (True))
+
+    def test_seleccionar_estudiante(self):
+        verificar = self.controladorEstudiante.seleccionar_Estudiante()
+        self.assertIsNotNone(verificar)

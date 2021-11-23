@@ -1,3 +1,5 @@
+import random
+
 from src.modelo.Estudiante import Estudiante
 from src.modelo.declarative_base import engine, Base, session
 
@@ -57,3 +59,8 @@ class ControladorEstudiante():
 
     def dar_estudiante_por_idEstudiante(self, idEstudiante):
         return session.query(Estudiante).get(idEstudiante).__dict__
+
+    def seleccionar_Estudiante(self):
+        listaEstudiantes = session.query(Estudiante).filter(Estudiante.elegible == True).all()
+
+        return random.choice(listaEstudiantes)

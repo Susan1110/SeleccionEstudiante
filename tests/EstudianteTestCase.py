@@ -125,3 +125,32 @@ class AsignaturaTestCase ( unittest.TestCase ) :
     def test_agregar_estudiantevacio(self):
         resultado = self.controladorEstudiante.agregar_estudiante(" "," "," "," ")
         self.assertFalse(resultado)
+
+    def test_editar_estudiante(self):
+        self.sorteo.editar_estudiante(1, "Yauricasa", "Seguil", "Beatriz", True)
+        consulta = self.session.query(Estudiante).filter(Estudiante.idEstudiante == 1).first()
+        self.assertIsNot(consulta.nombres, "Beatriz Susan")
+
+    def test_eliminar_estudiante(self):
+        self.sorteo.eliminar_estudiante(3)
+        consulta = self.session.query(Estudiante).filter(Estudiante.idEstudiante == 3).first()
+        self.assertIsNone(consulta)
+
+    def test_dar_estudiante(self):
+        estudiantes = self.sorteo.dar_estudiante()
+        self.assertTrue(True)
+
+    def test_dar_estudiante_por_id(self):
+        self.sorteo.agregar_estudiante("Chavez", "Millan", "Noelia", True)
+        idEstudiante = self.session.query(Estudiante).filter(Estudiante.apellidoPaterno == "Chavez",
+                                                             Estudiante.apellidoMaterno == "Millan",
+                                                             Estudiante.nombres == "Noelia",
+                                                             Estudiante.elegible == True).first().idEstudiante
+        consulta = self.sorteo.dar_estudiante_por_idEstudiante(idEstudiante)["apellidoPaterno"]
+        consulta2 = self.sorteo.dar_estudiante_por_idEstudiante(idEstudiante)["apellidoMaterno"]
+        consulta3 = self.sorteo.dar_estudiante_por_idEstudiante(idEstudiante)["nombres"]
+        consulta4 = self.sorteo.dar_estudiante_por_idEstudiante(idEstudiante)["elegible"]
+        self.assertEqual(consulta, ("Chavez"))
+        self.assertEqual(consulta2, ("Millan"))
+        self.assertEqual(consulta3, ("Noelia"))
+        self.assertEqual(consulta4, (True))

@@ -25,11 +25,11 @@ class ControladorEstudiante():
             return False
 
     def editar_estudiante(self, idEstudiante, apellidoPaterno, apellidoMaterno, nombres, elegible):
-        busqueda = session.query(Estudiante).filter(Estudiante.apellidoPaterno != apellidoPaterno,
-                                                    Estudiante.apellidoMaterno != apellidoMaterno,
-                                                    Estudiante.nombres != nombres,
-                                                    Estudiante.elegible != elegible,
-                                                    Estudiante.idEstudiante == idEstudiante).all()
+        busqueda = session.query(Estudiante).filter(Estudiante.apellidoPaterno == apellidoPaterno,
+                                                    Estudiante.apellidoMaterno == apellidoMaterno,
+                                                    Estudiante.nombres == nombres,
+                                                    Estudiante.elegible == elegible,
+                                                    Estudiante.idEstudiante != idEstudiante).all()
         if len(busqueda) == 0:
             estudiante = session.query(Estudiante).filter(Estudiante.idEstudiante == idEstudiante).first()
             estudiante.apellidoPaterno = apellidoPaterno

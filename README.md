@@ -4,6 +4,6 @@
 #### Grupo 1:
 #### Chávez Millán, Noelia Cleofé
 #### Doza Rodríguez, Carlos Alberto
-#### Santamaría Astuhuamán, Carla Ariana
+#### Santa María Astuhuamán, Carla Ariana
 #### Mauricio Rivera, Richard Noel
 #### Yauricasa Seguil, Beatriz Susan
